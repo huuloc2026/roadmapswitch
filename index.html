@@ -1,18 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lộ Trình AI/ML 2025-2030: Từ Fullstack đến AI Engineer</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="docTitle">Lộ Trình AI/ML 2025-2030: Từ Fullstack đến AI Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Chosen Palette: Calm Tech -->
     <!-- Application Structure Plan: A single-page application with a fixed sidebar navigation and a scrollable main content area (scroll-spy). This structure is chosen over tabs to provide a seamless, flowing experience, allowing the user to see the entire roadmap's scope while easily jumping to specific sections. It's more intuitive for a comprehensive guide. Key interactions include a visual timeline, a filterable grid for tools, and categorized project cards to make data exploration dynamic and user-centric rather than a passive reading experience. -->
     <!-- Visualization & Content Choices: 
@@ -23,951 +20,875 @@
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
     <style>
-      body {
-        font-family: "Be Vietnam Pro", sans-serif;
-        background-color: #f8fafc;
-      }
-      .sidebar-link {
-        transition: all 0.2s ease-in-out;
-        border-left: 3px solid transparent;
-      }
-      .sidebar-link.active,
-      .sidebar-link:hover {
-        background-color: #eef2ff;
-        color: #4f46e5;
-        border-left-color: #4f46e5;
-      }
-      .content-section {
-        display: none;
-      }
-      .content-section.active {
-        display: block;
-      }
-      .timeline {
-        position: relative;
-        padding-left: 2.5rem;
-        margin: 1.5rem 0;
-      }
-      .timeline::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background-color: #e5e7eb;
-      }
-      .timeline-item {
-        position: relative;
-        margin-bottom: 2rem;
-        cursor: pointer;
-      }
-      .timeline-item::before {
-        content: "";
-        position: absolute;
-        left: -2.5rem;
-        top: 4px;
-        width: 1rem;
-        height: 1rem;
-        border-radius: 9999px;
-        background-color: #fff;
-        border: 2px solid #9ca3af;
-        transition: all 0.2s ease-in-out;
-      }
-      .timeline-item.active::before {
-        border-color: #4f46e5;
-        transform: scale(1.2);
-        background-color: #4f46e5;
-      }
-      .timeline-content {
-        display: none;
-      }
-      .timeline-item.active .timeline-content {
-        display: block;
-      }
-      .chart-container {
-        position: relative;
-        width: 100%;
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
-        height: 350px;
-        max-height: 400px;
-      }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #f8fafc;
+        }
+        .sidebar-link {
+            transition: all 0.2s ease-in-out;
+            border-left: 3px solid transparent;
+        }
+        .sidebar-link.active, .sidebar-link:hover {
+            background-color: #eef2ff;
+            color: #4f46e5;
+            border-left-color: #4f46e5;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+            margin: 1.5rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 4px;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 9999px;
+            background-color: #fff;
+            border: 2px solid #9ca3af;
+            transition: all 0.2s ease-in-out;
+        }
+        .timeline-item.active::before {
+             border-color: #4f46e5;
+             transform: scale(1.2);
+             background-color: #4f46e5;
+        }
+        .timeline-content {
+            display: none;
+        }
+        .timeline-item.active .timeline-content {
+            display: block;
+        }
+        .chart-container {
+            position: relative; 
+            width: 100%; 
+            max-width: 400px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 350px;
+            max-height: 400px;
+        }
+        .lang-button {
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        .lang-button.active {
+            background-color: #4f46e5;
+            color: #ffffff;
+        }
+        .lang-button:not(.active):hover {
+            background-color: #eef2ff;
+            color: #4f46e5;
+        }
     </style>
-  </head>
-  <body class="bg-slate-50 text-slate-800">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
     <div class="flex flex-col md:flex-row min-h-screen">
-      <!-- Sidebar -->
-      <aside
-        id="sidebar"
-        class="w-full md:w-64 bg-white shadow-md md:fixed md:h-full transition-all duration-300 z-20"
-      >
-        <div class="p-5 border-b">
-          <h1 class="text-xl font-bold text-indigo-700">Lộ Trình AI/ML</h1>
-          <p class="text-xs text-slate-500">2025-2030</p>
-        </div>
-        <nav class="flex-grow">
-          <ul class="py-4" id="navigation-links">
-            <li>
-              <a
-                href="#overview"
-                class="sidebar-link block font-semibold px-5 py-3"
-                >Tổng Quan</a
-              >
-            </li>
-            <li>
-              <a
-                href="#roadmap"
-                class="sidebar-link block font-semibold px-5 py-3"
-                >Lộ Trình Học Tập</a
-              >
-            </li>
-            <li>
-              <a
-                href="#knowledge"
-                class="sidebar-link block font-semibold px-5 py-3"
-                >Kiến Thức Cốt Lõi</a
-              >
-            </li>
-            <li>
-              <a
-                href="#tools"
-                class="sidebar-link block font-semibold px-5 py-3"
-                >Công Cụ & Thư Viện</a
-              >
-            </li>
-            <li>
-              <a
-                href="#projects"
-                class="sidebar-link block font-semibold px-5 py-3"
-                >Dự Án Thực Tế</a
-              >
-            </li>
-            <li>
-              <a
-                href="#ethics"
-                class="sidebar-link block font-semibold px-5 py-3"
-                >Đạo Đức & Kỹ Năng</a
-              >
-            </li>
-          </ul>
-        </nav>
-        <div class="p-4 border-t text-center text-xs text-slate-400">
-          <p>Xây dựng cho Kỹ sư Fullstack</p>
-        </div>
-      </aside>
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-full md:w-64 bg-white shadow-md md:fixed md:h-full transition-all duration-300 z-20">
+            <div class="p-5 border-b">
+                <h1 class="text-xl font-bold text-indigo-700" data-i18n="appTitle">Lộ Trình AI/ML</h1>
+                <p class="text-xs text-slate-500" data-i18n="appSubtitle">2025-2030</p>
+                <div class="flex justify-center mt-3 gap-2">
+                    <button id="lang-vi" class="lang-button active" data-lang="vi">VI</button>
+                    <button id="lang-en" class="lang-button" data-lang="en">EN</button>
+                </div>
+            </div>
+            <nav class="flex-grow">
+                <ul class="py-4" id="navigation-links">
+                    <li><a href="#overview" class="sidebar-link block font-semibold px-5 py-3" data-i18n="sidebarOverview">Tổng Quan</a></li>
+                    <li><a href="#roadmap" class="sidebar-link block font-semibold px-5 py-3" data-i18n="sidebarRoadmap">Lộ Trình Học Tập</a></li>
+                    <li><a href="#knowledge" class="sidebar-link block font-semibold px-5 py-3" data-i18n="sidebarKnowledge">Kiến Thức Cốt Lõi</a></li>
+                    <li><a href="#tools" class="sidebar-link block font-semibold px-5 py-3" data-i18n="sidebarTools">Công Cụ & Thư Viện</a></li>
+                    <li><a href="#projects" class="sidebar-link block font-semibold px-5 py-3" data-i18n="sidebarProjects">Dự Án Thực Tế</a></li>
+                    <li><a href="#ethics" class="sidebar-link block font-semibold px-5 py-3" data-i18n="sidebarEthics">Đạo Đức & Kỹ Năng</a></li>
+                </ul>
+            </nav>
+            <div class="p-4 border-t text-center text-xs text-slate-400">
+                <p data-i18n="builtFor">Xây dựng cho Kỹ sư Fullstack</p>
+            </div>
+        </aside>
 
-      <!-- Main Content -->
-      <main class="w-full md:ml-64 p-4 sm:p-6 lg:p-10">
-        <!-- Overview Section -->
-        <section id="overview" class="scroll-mt-20 mb-16">
-          <h2 class="text-3xl font-bold text-slate-900 mb-4">
-            Chuyển Đổi Sự Nghiệp: Từ Fullstack đến AI Engineer
-          </h2>
-          <p class="text-lg text-slate-600 mb-8">
-            Trong bối cảnh công nghệ phát triển vũ bão, việc chuyển đổi sang vai
-            trò Kỹ sư AI/ML là một bước đi chiến lược. Ứng dụng này cung cấp một
-            lộ trình tương tác, giúp bạn tận dụng nền tảng Fullstack sẵn có để
-            chinh phục lĩnh vực AI, từ kiến thức nền tảng, các công cụ thiết yếu
-            đến những dự án thực tế phù hợp với xu hướng 2025-2030.
-          </p>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div
-              class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"
-            >
-              <h3 class="font-bold text-indigo-600 mb-2">Lợi Thế Cạnh Tranh</h3>
-              <p class="text-sm text-slate-600">
-                Kinh nghiệm về thiết kế hệ thống, API, và cloud computing là nền
-                tảng vững chắc để bạn triển khai các mô hình AI vào thực tế, tạo
-                ra lợi thế vượt trội so với người mới bắt đầu.
-              </p>
-            </div>
-            <div
-              class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"
-            >
-              <h3 class="font-bold text-indigo-600 mb-2">
-                Vai Trò AI Engineer 2025
-              </h3>
-              <p class="text-sm text-slate-600">
-                Không chỉ xây dựng mô hình, vai trò này đòi hỏi kỹ năng vận hành
-                (MLOps), triển khai, và tối ưu hóa hệ thống AI ở quy mô lớn, đảm
-                bảo chúng hoạt động tin cậy trong môi trường sản xuất.
-              </p>
-            </div>
-            <div
-              class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 lg:col-span-1 md:col-span-2"
-            >
-              <h3 class="font-bold text-indigo-600 mb-2">Xu Hướng Tương Lai</h3>
-              <p class="text-sm text-slate-600">
-                Generative AI, Multimodal Models và Autonomous Agents đang định
-                hình tương lai. Lộ trình này sẽ trang bị cho bạn kỹ năng để đón
-                đầu những xu hướng này.
-              </p>
-            </div>
-          </div>
-        </section>
+        <!-- Main Content -->
+        <main class="w-full md:ml-64 p-4 sm:p-6 lg:p-10">
+            
+            <!-- Overview Section -->
+            <section id="overview" class="scroll-mt-20 mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4" data-i18n="overviewTitle">Chuyển Đổi Sự Nghiệp: Từ Fullstack đến AI Engineer</h2>
+                <p class="text-lg text-slate-600 mb-8" data-i18n="overviewIntro">
+                    Trong bối cảnh công nghệ phát triển vũ bão, việc chuyển đổi sang vai trò Kỹ sư AI/ML là một bước đi chiến lược. Ứng dụng này cung cấp một lộ trình tương tác, giúp bạn tận dụng nền tảng Fullstack sẵn có để chinh phục lĩnh vực AI, từ kiến thức nền tảng, các công cụ thiết yếu đến những dự án thực tế phù hợp với xu hướng 2025-2030.
+                </p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-indigo-600 mb-2" data-i18n="advantageTitle">Lợi Thế Cạnh Tranh</h3>
+                        <p class="text-sm text-slate-600" data-i18n="advantageDesc">Kinh nghiệm về thiết kế hệ thống, API, và cloud computing là nền tảng vững chắc để bạn triển khai các mô hình AI vào thực tế, tạo ra lợi thế vượt trội so với người mới bắt đầu.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-indigo-600 mb-2" data-i18n="aiEngineerRoleTitle">Vai Trò AI Engineer 2025</h3>
+                        <p class="text-sm text-slate-600" data-i18n="aiEngineerRoleDesc">Không chỉ xây dựng mô hình, vai trò này đòi hỏi kỹ năng vận hành (MLOps), triển khai, và tối ưu hóa hệ thống AI ở quy mô lớn, đảm bảo chúng hoạt động tin cậy trong môi trường sản xuất.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 lg:col-span-1 md:col-span-2">
+                        <h3 class="font-bold text-indigo-600 mb-2" data-i18n="futureTrendsTitle">Xu Hướng Tương Lai</h3>
+                        <p class="text-sm text-slate-600" data-i18n="futureTrendsDesc">Generative AI, Multimodal Models và Autonomous Agents đang định hình tương lai. Lộ trình này sẽ trang bị cho bạn kỹ năng để đón đầu những xu hướng này.</p>
+                    </div>
+                </div>
+            </section>
 
-        <!-- Roadmap Section -->
-        <section id="roadmap" class="scroll-mt-20 mb-16">
-          <h2 class="text-3xl font-bold text-slate-900 mb-2">
-            Lộ Trình Học Tập Tương Tác
-          </h2>
-          <p class="text-lg text-slate-600 mb-8">
-            Lộ trình được thiết kế trong 5 giai đoạn, ước tính từ 6-12 tháng.
-            Thay vì học lại từ đầu, lộ trình này tối ưu hóa dựa trên nền tảng
-            Fullstack của bạn, tập trung vào việc "cầu nối" kiến thức sang lĩnh
-            vực AI. Hãy nhấn vào từng giai đoạn để khám phá chi tiết.
-          </p>
-          <div class="grid lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-2">
-              <div id="timeline-container" class="timeline"></div>
-            </div>
-            <div class="flex flex-col items-center">
-              <h3 class="text-xl font-bold text-slate-900 mb-4 text-center">
-                Phân Bổ Thời Gian (Ước Tính)
-              </h3>
-              <div class="chart-container">
-                <canvas id="roadmapChart"></canvas>
-              </div>
-            </div>
-          </div>
-        </section>
+            <!-- Roadmap Section -->
+            <section id="roadmap" class="scroll-mt-20 mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2" data-i18n="roadmapTitle">Lộ Trình Học Tập Tương Tác</h2>
+                <p class="text-lg text-slate-600 mb-8" data-i18n="roadmapIntro">
+                    Lộ trình được thiết kế trong 5 giai đoạn, ước tính từ 6-12 tháng. Thay vì học lại từ đầu, lộ trình này tối ưu hóa dựa trên nền tảng Fullstack của bạn, tập trung vào việc "cầu nối" kiến thức sang lĩnh vực AI. Hãy nhấn vào từng giai đoạn để khám phá chi tiết.
+                </p>
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2">
+                        <div id="timeline-container" class="timeline">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                         <h3 class="text-xl font-bold text-slate-900 mb-4 text-center" data-i18n="timeAllocationTitle">Phân Bổ Thời Gian (Ước Tính)</h3>
+                         <div class="chart-container">
+                            <canvas id="roadmapChart"></canvas>
+                         </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Core Knowledge Section -->
+            <section id="knowledge" class="scroll-mt-20 mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2" data-i18n="knowledgeTitle">Khám Phám Kiến Thức Cốt Lõi</h2>
+                <p class="text-lg text-slate-600 mb-8" data-i18n="knowledgeIntro">
+                    Nền tảng của AI/ML được xây dựng trên các trụ cột về Toán, Lập trình và các thuật toán chuyên sâu. Phần này cung cấp một cái nhìn tổng quan về các khối kiến thức bạn cần nắm vững, giúp bạn hiểu "tại sao" và "như thế nào" đằng sau mỗi mô hình.
+                </p>
+                <div class="space-y-8">
+                    <!-- Math Section -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 flex items-center"><span class="text-2xl mr-3">🔢</span> <span data-i18n="mathSectionTitle">Toán Học & Thống Kê</span></h3>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-white p-4 rounded-lg shadow-sm border"><h4 class="font-bold" data-i18n="linearAlgebraTitle">Đại số tuyến tính</h4><p class="text-sm text-slate-500" data-i18n="linearAlgebraDesc">Nền tảng của dữ liệu. Vectors và matrices là "ngôn ngữ" để biểu diễn và xử lý thông tin đầu vào cho mô hình.</p></div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border"><h4 class="font-bold" data-i18n="calculusTitle">Giải tích</h4><p class="text-sm text-slate-500" data-i18n="calculusDesc">Chìa khóa để tối ưu hóa. Gradient Descent và Backpropagation dùng đạo hàm để "dạy" mô hình học hỏi và cải thiện.</p></div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border"><h4 class="font-bold" data-i18n="probabilityStatsTitle">Xác suất & Thống kê</h4><p class="text-sm text-slate-500" data-i18n="probabilityStatsDesc">Giúp mô hình xử lý sự không chắc chắn và đưa ra các dự đoán đáng tin cậy.</p></div>
+                        </div>
+                    </div>
+                    <!-- ML/DL Section -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 flex items-center"><span class="text-2xl mr-3">🧠</span> <span data-i18n="mlDlSectionTitle">Machine Learning & Deep Learning</span></h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-lg shadow-sm border">
+                                <h4 class="font-bold mb-2" data-i18n="mlTitle">Machine Learning</h4>
+                                <ul class="space-y-2 list-inside list-disc text-sm text-slate-600">
+                                    <li data-i18n="mlSupervised"><b>Học có giám sát:</b> Học từ dữ liệu đã gán nhãn (Classification, Regression).</li>
+                                    <li data-i18n="mlUnsupervised"><b>Học không giám sát:</b> Tìm kiếm các mẫu ẩn trong dữ liệu (Clustering, PCA).</li>
+                                    <li data-i18n="mlEnsemble"><b>Ensemble Methods:</b> Kết hợp nhiều mô hình để tăng độ chính xác (Random Forests, XGBoost).</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm border">
+                                <h4 class="font-bold mb-2" data-i18n="dlTitle">Deep Learning (Xu hướng 2025)</h4>
+                                <ul class="space-y-2 list-inside list-disc text-sm text-slate-600">
+                                    <li data-i18n="dlCnn"><b>CNNs:</b> Xương sống của Thị giác máy tính.</li>
+                                    <li data-i18n="dlTransformers"><b>Transformers:</b> Kiến trúc đột phá cho NLP (GPT, BERT).</li>
+                                    <li data-i18n="dlGenerative"><b>Generative Models:</b> Tạo ra nội dung mới (GANs, Diffusion Models).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Specializations Section -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 flex items-center"><span class="text-2xl mr-3">💡</span> <span data-i18n="specializationsSectionTitle">Lĩnh Vực Chuyên Sâu</span></h3>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-white p-4 rounded-lg shadow-sm border"><h4 class="font-bold" data-i18n="nlpSpecializationTitle">NLP (Xử lý ngôn ngữ)</h4><p class="text-sm text-slate-500" data-i18n="nlpSpecializationDesc">Tập trung vào LLMs và RAG để xây dựng các ứng dụng đàm thoại thông minh.</p></div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border"><h4 class="font-bold" data-i18n="cvSpecializationTitle">Computer Vision</h4><p class="text-sm text-slate-500" data-i18n="cvSpecializationDesc">Kết hợp CNNs với Generative AI để tạo và phân tích hình ảnh, video.</p></div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border"><h4 class="font-bold text-indigo-700" data-i18n="mlopsSpecializationTitle">MLOps (Vận hành ML)</h4><p class="text-sm text-slate-500" data-i18n="mlopsSpecializationDesc">Cầu nối giữa phát triển và sản xuất. Kỹ năng quan trọng nhất cho Fullstack Engineer.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <!-- Core Knowledge Section -->
-        <section id="knowledge" class="scroll-mt-20 mb-16">
-          <h2 class="text-3xl font-bold text-slate-900 mb-2">
-            Khám Phá Kiến Thức Cốt Lõi
-          </h2>
-          <p class="text-lg text-slate-600 mb-8">
-            Nền tảng của AI/ML được xây dựng trên các trụ cột về Toán, Lập trình
-            và các thuật toán chuyên sâu. Phần này cung cấp một cái nhìn tổng
-            quan về các khối kiến thức bạn cần nắm vững, giúp bạn hiểu "tại sao"
-            và "như thế nào" đằng sau mỗi mô hình.
-          </p>
-          <div class="space-y-8">
-            <!-- Math Section -->
-            <div>
-              <h3 class="text-2xl font-semibold mb-4 flex items-center">
-                <span class="text-2xl mr-3">🔢</span> Toán Học & Thống Kê
-              </h3>
-              <div class="grid md:grid-cols-3 gap-4">
-                <div class="bg-white p-4 rounded-lg shadow-sm border">
-                  <h4 class="font-bold">Đại số tuyến tính</h4>
-                  <p class="text-sm text-slate-500">
-                    Nền tảng của dữ liệu. Vectors và matrices là "ngôn ngữ" để
-                    biểu diễn và xử lý thông tin đầu vào cho mô hình.
-                  </p>
+            <!-- Tools Section -->
+            <section id="tools" class="scroll-mt-20 mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2" data-i18n="toolsTitle">Hệ Sinh Thái Công Cụ & Thư Viện</h2>
+                 <p class="text-lg text-slate-600 mb-6" data-i18n="toolsIntro">
+                    Hệ sinh thái AI rất rộng lớn và chuyên môn hóa. Thay vì học tất cả, hãy bắt đầu với các công cụ cốt lõi và mở rộng dần. Sử dụng thanh tìm kiếm dưới đây để nhanh chóng lọc các công cụ theo tên hoặc chức năng.
+                </p>
+                <div class="mb-6">
+                    <input type="text" id="tool-search" placeholder="🔍 Tìm kiếm công cụ (ví dụ: 'deep learning', 'pytorch')..." class="w-full p-3 border border-slate-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" data-i18n-placeholder="toolSearchPlaceholder">
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border">
-                  <h4 class="font-bold">Giải tích</h4>
-                  <p class="text-sm text-slate-500">
-                    Chìa khóa để tối ưu hóa. Gradient Descent và Backpropagation
-                    dùng đạo hàm để "dạy" mô hình học hỏi và cải thiện.
-                  </p>
+                <div id="tools-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <!-- Tools will be injected here by JS -->
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border">
-                  <h4 class="font-bold">Xác suất & Thống kê</h4>
-                  <p class="text-sm text-slate-500">
-                    Giúp mô hình xử lý sự không chắc chắn và đưa ra các dự đoán
-                    đáng tin cậy.
-                  </p>
+                 <p id="no-results" class="text-center text-slate-500 mt-8 hidden" data-i18n="noResults">Không tìm thấy công cụ phù hợp.</p>
+            </section>
+            
+            <!-- Projects Section -->
+            <section id="projects" class="scroll-mt-20 mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2" data-i18n="projectsTitle">Portfolios Speak Louder than Degrees</h2>
+                <p class="text-lg text-slate-600 mb-6" data-i18n="projectsIntro">
+                    Một portfolio mạnh mẽ với các dự án hiện đại là cách tốt nhất để chứng minh năng lực. Hãy tránh các dự án lỗi thời. Dưới đây là các ý tưởng tập trung vào những xu hướng nóng nhất giai đoạn 2025-2026. Lọc dự án theo lĩnh vực bạn quan tâm.
+                </p>
+                <div id="project-filters" class="flex flex-wrap gap-2 mb-6">
+                    <!-- Filter buttons will be injected here by JS -->
                 </div>
-              </div>
-            </div>
-            <!-- ML/DL Section -->
-            <div>
-              <h3 class="text-2xl font-semibold mb-4 flex items-center">
-                <span class="text-2xl mr-3">🧠</span> Machine Learning & Deep
-                Learning
-              </h3>
-              <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-sm border">
-                  <h4 class="font-bold mb-2">Machine Learning</h4>
-                  <ul
-                    class="space-y-2 list-inside list-disc text-sm text-slate-600"
-                  >
-                    <li>
-                      <b>Học có giám sát:</b> Học từ dữ liệu đã gán nhãn
-                      (Classification, Regression).
-                    </li>
-                    <li>
-                      <b>Học không giám sát:</b> Tìm kiếm các mẫu ẩn trong dữ
-                      liệu (Clustering, PCA).
-                    </li>
-                    <li>
-                      <b>Ensemble Methods:</b> Kết hợp nhiều mô hình để tăng độ
-                      chính xác (Random Forests, XGBoost).
-                    </li>
-                  </ul>
+                <div id="projects-container" class="grid md:grid-cols-2 gap-6">
+                    <!-- Projects will be injected here by JS -->
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm border">
-                  <h4 class="font-bold mb-2">Deep Learning (Xu hướng 2025)</h4>
-                  <ul
-                    class="space-y-2 list-inside list-disc text-sm text-slate-600"
-                  >
-                    <li><b>CNNs:</b> Xương sống của Thị giác máy tính.</li>
-                    <li>
-                      <b>Transformers:</b> Kiến trúc đột phá cho NLP (GPT,
-                      BERT).
-                    </li>
-                    <li>
-                      <b>Generative Models:</b> Tạo ra nội dung mới (GANs,
-                      Diffusion Models).
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- Specializations Section -->
-            <div>
-              <h3 class="text-2xl font-semibold mb-4 flex items-center">
-                <span class="text-2xl mr-3">💡</span> Lĩnh Vực Chuyên Sâu
-              </h3>
-              <div class="grid md:grid-cols-3 gap-4">
-                <div class="bg-white p-4 rounded-lg shadow-sm border">
-                  <h4 class="font-bold">NLP (Xử lý ngôn ngữ)</h4>
-                  <p class="text-sm text-slate-500">
-                    Tập trung vào LLMs và RAG để xây dựng các ứng dụng đàm thoại
-                    thông minh.
-                  </p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border">
-                  <h4 class="font-bold">Computer Vision</h4>
-                  <p class="text-sm text-slate-500">
-                    Kết hợp CNNs với Generative AI để tạo và phân tích hình ảnh,
-                    video.
-                  </p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border">
-                  <h4 class="font-bold text-indigo-700">MLOps (Vận hành ML)</h4>
-                  <p class="text-sm text-slate-500">
-                    Cầu nối giữa phát triển và sản xuất. Kỹ năng quan trọng nhất
-                    cho Fullstack Engineer.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+            </section>
 
-        <!-- Tools Section -->
-        <section id="tools" class="scroll-mt-20 mb-16">
-          <h2 class="text-3xl font-bold text-slate-900 mb-2">
-            Hệ Sinh Thái Công Cụ & Thư Viện
-          </h2>
-          <p class="text-lg text-slate-600 mb-6">
-            Hệ sinh thái AI rất rộng lớn và chuyên môn hóa. Thay vì học tất cả,
-            hãy bắt đầu với các công cụ cốt lõi và mở rộng dần. Sử dụng thanh
-            tìm kiếm dưới đây để nhanh chóng lọc các công cụ theo tên hoặc chức
-            năng.
-          </p>
-          <div class="mb-6">
-            <input
-              type="text"
-              id="tool-search"
-              placeholder="🔍 Tìm kiếm công cụ (ví dụ: 'deep learning', 'pytorch')..."
-              class="w-full p-3 border border-slate-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div
-            id="tools-grid"
-            class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-          >
-            <!-- Tools will be injected here by JS -->
-          </div>
-          <p id="no-results" class="text-center text-slate-500 mt-8 hidden">
-            Không tìm thấy công cụ phù hợp.
-          </p>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="scroll-mt-20 mb-16">
-          <h2 class="text-3xl font-bold text-slate-900 mb-2">
-            Portfolios Speak Louder than Degrees
-          </h2>
-          <p class="text-lg text-slate-600 mb-6">
-            Một portfolio mạnh mẽ với các dự án hiện đại là cách tốt nhất để
-            chứng minh năng lực. Hãy tránh các dự án lỗi thời. Dưới đây là các ý
-            tưởng tập trung vào những xu hướng nóng nhất giai đoạn 2025-2026.
-            Lọc dự án theo lĩnh vực bạn quan tâm.
-          </p>
-          <div id="project-filters" class="flex flex-wrap gap-2 mb-6">
-            <!-- Filter buttons will be injected here by JS -->
-          </div>
-          <div id="projects-container" class="grid md:grid-cols-2 gap-6">
-            <!-- Projects will be injected here by JS -->
-          </div>
-        </section>
-
-        <!-- Ethics Section -->
-        <section id="ethics" class="scroll-mt-20">
-          <h2 class="text-3xl font-bold text-slate-900 mb-2">
-            Đạo Đức AI & Kỹ Năng Mềm
-          </h2>
-          <p class="text-lg text-slate-600 mb-8">
-            Một kỹ sư AI xuất sắc không chỉ giỏi về kỹ thuật mà còn phải có
-            trách nhiệm và khả năng giao tiếp. Hiểu về các vấn đề đạo đức như
-            thiên vị (bias) hay quyền riêng tư, và khả năng "kể chuyện bằng dữ
-            liệu" là những yếu tố tạo nên sự khác biệt.
-          </p>
-          <div class="grid md:grid-cols-2 gap-6">
-            <div
-              class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"
-            >
-              <h3 class="font-bold text-red-600 mb-2">Trách Nhiệm & Đạo Đức</h3>
-              <ul
-                class="space-y-2 list-inside list-disc text-sm text-slate-600"
-              >
-                <li>
-                  <b>Thiên vị (Bias):</b> Mô hình AI có thể học và khuếch đại
-                  các định kiến xã hội có sẵn trong dữ liệu.
-                </li>
-                <li>
-                  <b>Quyền riêng tư:</b> Bảo vệ dữ liệu người dùng là ưu tiên
-                  hàng đầu khi xây dựng các ứng dụng AI.
-                </li>
-                <li>
-                  <b>Tính chính xác:</b> Hiểu rằng AI là một công cụ xác suất và
-                  luôn cần "con người giám sát" (human in the loop).
-                </li>
-                <li>
-                  <b>Tính giải thích được (XAI):</b> Nỗ lực làm cho các quyết
-                  định của mô hình trở nên minh bạch và dễ hiểu.
-                </li>
-              </ul>
-            </div>
-            <div
-              class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"
-            >
-              <h3 class="font-bold text-green-600 mb-2">Kỹ Năng "Song Ngữ"</h3>
-              <p class="text-sm text-slate-600 mb-4">
-                Thành công trong lĩnh vực AI đòi hỏi khả năng kết nối giữa hai
-                thế giới:
-              </p>
-              <ul
-                class="space-y-2 list-inside list-disc text-sm text-slate-600"
-              >
-                <li>
-                  <b>Phân tích dữ liệu (Numbers People):</b> Chuyển hóa những
-                  hiểu biết sâu sắc từ dữ liệu thành những câu chuyện có ý
-                  nghĩa.
-                </li>
-                <li>
-                  <b>Kể chuyện (Story People):</b> Truyền đạt giá trị và tác
-                  động của mô hình cho các bên liên quan một cách thuyết phục.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-      </main>
+            <!-- Ethics Section -->
+            <section id="ethics" class="scroll-mt-20">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2" data-i18n="ethicsTitle">Đạo Đức AI & Kỹ Năng Mềm</h2>
+                <p class="text-lg text-slate-600 mb-8" data-i18n="ethicsIntro">
+                    Một kỹ sư AI xuất sắc không chỉ giỏi về kỹ thuật mà còn phải có trách nhiệm và khả năng giao tiếp. Hiểu về các vấn đề đạo đức như thiên vị (bias) hay quyền riêng tư, và khả năng "kể chuyện bằng dữ liệu" là những yếu tố tạo nên sự khác biệt.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-red-600 mb-2" data-i18n="ethicsResponsibilityTitle">Trách Nhiệm & Đạo Đức</h3>
+                        <ul class="space-y-2 list-inside list-disc text-sm text-slate-600">
+                            <li data-i18n="ethicsBias">Mô hình AI có thể học và khuếch đại các định kiến xã hội có sẵn trong dữ liệu.</li>
+                            <li data-i18n="ethicsPrivacy">Quyền riêng tư: Bảo vệ dữ liệu người dùng là ưu tiên hàng đầu khi xây dựng các ứng dụng AI.</li>
+                            <li data-i18n="ethicsAccuracy">Tính chính xác:Hiểu rằng AI là một công cụ xác suất và luôn cần "con người giám sát" (human in the loop).</li>
+                            <li data-i18n="ethicsXAI"></li>Tính giải thích được (XAI): Nỗ lực làm cho các quyết định của mô hình trở nên minh bạch và dễ hiểu.</li>
+                        </ul>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-green-600 mb-2" data-i18n="softSkillsTitle">Kỹ Năng "Song Ngữ"</h3>
+                        <p class="text-sm text-slate-600 mb-4" data-i18n="softSkillsIntro">Thành công trong lĩnh vực AI đòi hỏi khả năng kết nối giữa hai thế giới:</p>
+                        <ul class="space-y-2 list-inside list-disc text-sm text-slate-600">
+                            <li data-i18n="softSkillsAnalytics"> Phân tích dữ liệu (Numbers People): Chuyển hóa những hiểu biết sâu sắc từ dữ liệu thành những câu chuyện có ý nghĩa.</li>
+                            <li data-i18n="softSkillsStorytelling">Kể chuyện (Story People): Truyền đạt giá trị và tác động của mô hình cho các bên liên quan một cách thuyết phục.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const navigationLinks = document.querySelectorAll(
-          "#navigation-links a",
-        );
-        const sections = document.querySelectorAll("main section");
-        const timelineContainer = document.getElementById("timeline-container");
-        const toolsGrid = document.getElementById("tools-grid");
-        const toolSearch = document.getElementById("tool-search");
-        const noResults = document.getElementById("no-results");
-        const projectsContainer = document.getElementById("projects-container");
-        const projectFiltersContainer =
-          document.getElementById("project-filters");
+<script>
+document.addEventListener('DOMContentLoaded', () => {
 
-        // Data from the report
-        const timelineData = [
-          {
+    let currentLanguage = 'vi'; // Default language
+
+    const navigationLinks = document.querySelectorAll('#navigation-links a');
+    const sections = document.querySelectorAll('main section');
+    const timelineContainer = document.getElementById('timeline-container');
+    const toolsGrid = document.getElementById('tools-grid');
+    const toolSearch = document.getElementById('tool-search');
+    const noResults = document.getElementById('no-results');
+    const projectsContainer = document.getElementById('projects-container');
+    const projectFiltersContainer = document.getElementById('project-filters');
+
+    const langButtons = document.querySelectorAll('.lang-button');
+    const roadmapChartCanvas = document.getElementById('roadmapChart');
+    let roadmapChartInstance = null; // To store Chart.js instance
+
+
+    const translations = {
+        vi: {
+            docTitle: 'Lộ Trình AI/ML 2025-2030: Từ Fullstack đến AI Engineer',
+            appTitle: 'Lộ Trình AI/ML',
+            appSubtitle: '2025-2030',
+            sidebarOverview: 'Tổng Quan',
+            sidebarRoadmap: 'Lộ Trình Học Tập',
+            sidebarKnowledge: 'Kiến Thức Cốt Lõi',
+            sidebarTools: 'Công Cụ & Thư Viện',
+            sidebarProjects: 'Dự Án Thực Tế',
+            sidebarEthics: 'Đạo Đức & Kỹ Năng',
+            builtFor: 'Xây dựng cho Kỹ sư Fullstack',
+            overviewTitle: 'Chuyển Đổi Sự Nghiệp: Từ Fullstack đến AI Engineer',
+            overviewIntro: 'Trong bối cảnh công nghệ phát triển vũ bão, việc chuyển đổi sang vai trò Kỹ sư AI/ML là một bước đi chiến lược. Ứng dụng này cung cấp một lộ trình tương tác, giúp bạn tận dụng nền tảng Fullstack sẵn có để chinh phục lĩnh vực AI, từ kiến thức nền tảng, các công cụ thiết yếu đến những dự án thực tế phù hợp với xu hướng 2025-2030.',
+            advantageTitle: 'Lợi Thế Cạnh Tranh',
+            advantageDesc: 'Kinh nghiệm về thiết kế hệ thống, API, và cloud computing là nền tảng vững chắc để bạn triển khai các mô hình AI vào thực tế, tạo ra lợi thế vượt trội so với người mới bắt đầu.',
+            aiEngineerRoleTitle: 'Vai Trò AI Engineer 2025',
+            aiEngineerRoleDesc: 'Không chỉ xây dựng mô hình, vai trò này đòi hỏi kỹ năng vận hành (MLOps), triển khai, và tối ưu hóa hệ thống AI ở quy mô lớn, đảm bảo chúng hoạt động tin cậy trong môi trường sản xuất.',
+            futureTrendsTitle: 'Xu Hướng Tương Lai',
+            futureTrendsDesc: 'Generative AI, Multimodal Models và Autonomous Agents đang định hình tương lai. Lộ trình này sẽ trang bị cho bạn kỹ năng để đón đầu những xu hướng này.',
+            roadmapTitle: 'Lộ Trình Học Tập Tương Tác',
+            roadmapIntro: 'Lộ trình được thiết kế trong 5 giai đoạn, ước tính từ 6-12 tháng. Thay vì học lại từ đầu, lộ trình này tối ưu hóa dựa trên nền tảng Fullstack của bạn, tập trung vào việc "cầu nối" kiến thức sang lĩnh vực AI. Hãy nhấn vào từng giai đoạn để khám phá chi tiết.',
+            timeAllocationTitle: 'Phân Bổ Thời Gian (Ước Tính)',
+            knowledgeTitle: 'Khám Phám Kiến Thức Cốt Lõi',
+            knowledgeIntro: 'Nền tảng của AI/ML được xây dựng trên các trụ cột về Toán, Lập trình và các thuật toán chuyên sâu. Phần này cung cấp một cái nhìn tổng quan về các khối kiến thức bạn cần nắm vững, giúp bạn hiểu "tại sao" và "như thế nào" đằng sau mỗi mô hình.',
+            mathSectionTitle: 'Toán Học & Thống Kê',
+            linearAlgebraTitle: 'Đại số tuyến tính',
+            linearAlgebraDesc: 'Nền tảng của dữ liệu. Vectors và matrices là "ngôn ngữ" để biểu diễn và xử lý thông tin đầu vào cho mô hình.',
+            calculusTitle: 'Giải tích',
+            calculusDesc: 'Chìa khóa để tối ưu hóa. Gradient Descent và Backpropagation dùng đạo hàm để "dạy" mô hình học hỏi và cải thiện.',
+            probabilityStatsTitle: 'Xác suất & Thống kê',
+            probabilityStatsDesc: 'Giúp mô hình xử lý sự không chắc chắn và đưa ra các dự đoán đáng tin cậy.',
+            mlDlSectionTitle: 'Machine Learning & Deep Learning',
+            mlTitle: 'Machine Learning',
+            mlSupervised: '<b>Học có giám sát:</b> Học từ dữ liệu đã gán nhãn (Classification, Regression).',
+            mlUnsupervised: '<b>Học không giám sát:</b> Tìm kiếm các mẫu ẩn trong dữ liệu (Clustering, PCA).',
+            mlEnsemble: '<b>Ensemble Methods:</b> Kết hợp nhiều mô hình để tăng độ chính xác (Random Forests, XGBoost).',
+            dlTitle: 'Deep Learning (Xu hướng 2025)',
+            dlCnn: '<b>CNNs:</b> Xương sống của Thị giác máy tính.',
+            dlTransformers: '<b>Transformers:</b> Kiến trúc đột phá cho NLP (GPT, BERT).',
+            dlGenerative: '<b>Generative Models:</b> Tạo ra nội dung mới (GANs, Diffusion Models).',
+            specializationsSectionTitle: 'Lĩnh Vực Chuyên Sâu',
+            nlpSpecializationTitle: 'NLP (Xử lý ngôn ngữ)',
+            nlpSpecializationDesc: 'Tập trung vào LLMs và RAG để xây dựng các ứng dụng đàm thoại thông minh.',
+            cvSpecializationTitle: 'Computer Vision',
+            cvSpecializationDesc: 'Kết hợp CNNs với Generative AI để tạo và phân tích hình ảnh, video.',
+            mlopsSpecializationTitle: 'MLOps (Vận hành ML)',
+            mlopsSpecializationDesc: 'Cầu nối giữa phát triển và sản xuất. Kỹ năng quan trọng nhất cho Fullstack Engineer.',
+            toolsTitle: 'Hệ Sinh Thái Công Cụ & Thư Viện',
+            toolsIntro: 'Hệ sinh thái AI rất rộng lớn và chuyên môn hóa. Thay vì học tất cả, hãy bắt đầu với các công cụ cốt lõi và mở rộng dần. Sử dụng thanh tìm kiếm dưới đây để nhanh chóng lọc các công cụ theo tên hoặc chức năng.',
+            toolSearchPlaceholder: '🔍 Tìm kiếm công cụ (ví dụ: "deep learning", "pytorch")...',
+            noResults: 'Không tìm thấy công cụ phù hợp.',
+            projectsTitle: 'Portfolios Speak Louder than Degrees',
+            projectsIntro: 'Một portfolio mạnh mẽ với các dự án hiện đại là cách tốt nhất để chứng minh năng lực. Hãy tránh các dự án lỗi thời. Dưới đây là các ý tưởng tập trung vào những xu hướng nóng nhất giai đoạn 2025-2026. Lọc dự án theo lĩnh vực bạn quan tâm.',
+            ethicsTitle: 'Đạo Đức AI & Kỹ Năng Mềm',
+            ethicsIntro: 'Một kỹ sư AI xuất sắc không chỉ giỏi về kỹ thuật mà còn phải có trách nhiệm và khả năng giao tiếp. Hiểu về các vấn đề đạo đức như thiên vị (bias) hay quyền riêng tư, và khả năng "kể chuyện bằng dữ liệu" là những yếu tố tạo nên sự khác biệt.',
+            ethicsResponsibilityTitle: 'Trách Nhiệm & Đạo Đức',
+            ethicsBias: 'Thiên vị (Bias): Mô hình AI có thể học và khuếch đại các định kiến xã hội có sẵn trong dữ liệu.',
+            ethicsPrivacy: 'Quyền riêng tư: Bảo vệ dữ liệu người dùng là ưu tiên hàng đầu khi xây dựng các ứng dụng AI.',
+            ethicsAccuracy: 'Tính chính xác: Hiểu rằng AI là một công cụ xác suất và luôn cần "con người giám sát" (human in the loop).',
+            ethicsXAI: 'Tính giải thích được (XAI): Nỗ lực làm cho các quyết định của mô hình trở nên minh bạch và dễ hiểu.',
+            softSkillsTitle: 'Kỹ Năng "Song Ngữ"',
+            softSkillsIntro: 'Thành công trong lĩnh vực AI đòi hỏi khả năng kết nối giữa hai thế giới:',
+            softSkillsAnalytics: 'Phân tích dữ liệu (Numbers People): Chuyển hóa những hiểu biết sâu sắc từ dữ liệu thành những câu chuyện có ý nghĩa.',
+            softSkillsStorytelling: 'Kể chuyện (Story People): Truyền đạt giá trị và tác động của mô hình cho các bên liên quan một cách thuyết phục.',
+            filterAll: 'Tất cả',
+            techProposed: 'Công nghệ đề xuất',
+        },
+        en: {
+            docTitle: 'AI/ML Roadmap 2025-2030: From Fullstack to AI Engineer',
+            appTitle: 'AI/ML Roadmap',
+            appSubtitle: '2025-2030',
+            sidebarOverview: 'Overview',
+            sidebarRoadmap: 'Learning Roadmap',
+            sidebarKnowledge: 'Core Knowledge',
+            sidebarTools: 'Tools & Libraries',
+            sidebarProjects: 'Real-World Projects',
+            sidebarEthics: 'Ethics & Soft Skills',
+            builtFor: 'Built for Fullstack Engineers',
+            overviewTitle: 'Career Transition: From Fullstack to AI Engineer',
+            overviewIntro: 'In the rapidly evolving tech landscape, transitioning to an AI/ML Engineer role is a strategic move. This application provides an interactive roadmap, helping you leverage your existing Fullstack foundation to conquer the AI field, from fundamental knowledge and essential tools to practical projects aligned with 2025-2030 trends.',
+            advantageTitle: 'Competitive Advantage',
+            advantageDesc: 'Experience in system design, APIs, and cloud computing provides a solid foundation for deploying AI models in practice, creating a significant advantage over beginners.',
+            aiEngineerRoleTitle: 'AI Engineer Role 2025',
+            aiEngineerRoleDesc: 'Beyond just building models, this role demands MLOps skills, deployment, and optimizing AI systems at scale, ensuring they operate reliably in production environments.',
+            futureTrendsTitle: 'Future Trends',
+            futureTrendsDesc: 'Generative AI, Multimodal Models, and Autonomous Agents are shaping the future. This roadmap will equip you with the skills to embrace these trends.',
+            roadmapTitle: 'Interactive Learning Roadmap',
+            roadmapIntro: 'The roadmap is designed in 5 stages, estimated to take 6-12 months. Instead of starting from scratch, this roadmap optimizes based on your Fullstack foundation, focusing on "bridging" knowledge to the AI field. Click on each stage to explore details.',
+            timeAllocationTitle: 'Time Allocation (Estimated)',
+            knowledgeTitle: 'Explore Core Knowledge',
+            knowledgeIntro: 'The foundation of AI/ML is built upon pillars of Math, Programming, and specialized algorithms. This section provides an overview of the knowledge blocks you need to master, helping you understand the "why" and "how" behind each model.',
+            mathSectionTitle: 'Mathematics & Statistics',
+            linearAlgebraTitle: 'Linear Algebra',
+            linearAlgebraDesc: 'The foundation of data. Vectors and matrices are the "language" to represent and process input information for models.',
+            calculusTitle: 'Calculus',
+            calculusDesc: 'The key to optimization. Gradient Descent and Backpropagation use derivatives to "teach" models to learn and improve.',
+            probabilityStatsTitle: 'Probability & Statistics',
+            probabilityStatsDesc: 'Helps models handle uncertainty and make reliable predictions.',
+            mlDlSectionTitle: 'Machine Learning & Deep Learning',
+            mlTitle: 'Machine Learning',
+            mlSupervised: '<b>Supervised Learning:</b> Learning from labeled data (Classification, Regression).',
+            mlUnsupervised: '<b>Unsupervised Learning:</b> Discovering hidden patterns in data (Clustering, PCA).',
+            mlEnsemble: '<b>Ensemble Methods:</b> Combining multiple models to increase accuracy (Random Forests, XGBoost).',
+            dlTitle: 'Deep Learning (2025 Trends)',
+            dlCnn: '<b>CNNs:</b> The backbone of Computer Vision.',
+            dlTransformers: '<b>Transformers:</b> Breakthrough architecture for NLP (GPT, BERT).',
+            dlGenerative: '<b>Generative Models:</b> Creating new content (GANs, Diffusion Models).',
+            specializationsSectionTitle: 'Specialized Fields',
+            nlpSpecializationTitle: 'NLP (Natural Language Processing)',
+            nlpSpecializationDesc: 'Focus on LLMs and RAG to build intelligent conversational applications.',
+            cvSpecializationTitle: 'Computer Vision',
+            cvSpecializationDesc: 'Combine CNNs with Generative AI to create and analyze images and videos.',
+            mlopsSpecializationTitle: 'MLOps (Machine Learning Operations)',
+            mlopsSpecializationDesc: 'The bridge between development and production. The most crucial skill for a Fullstack Engineer.',
+            toolsTitle: 'Tool & Library Ecosystem',
+            toolsIntro: 'The AI ecosystem is vast and specialized. Instead of learning everything, start with core tools and expand gradually. Use the search bar below to quickly filter tools by name or function.',
+            toolSearchPlaceholder: '🔍 Search tools (e.g., "deep learning", "pytorch")...',
+            noResults: 'No matching tools found.',
+            projectsTitle: 'Portfolios Speak Louder than Degrees',
+            projectsIntro: 'A strong portfolio with modern projects is the best way to demonstrate capabilities. Avoid outdated projects. Here are ideas focusing on the hottest trends from 2025-2026. Filter projects by your area of interest.',
+            ethicsTitle: 'AI Ethics & Soft Skills',
+            ethicsIntro: 'An excellent AI engineer is not only technically proficient but also responsible and communicative. Understanding ethical issues like bias or privacy, and the ability to "tell stories with data" are differentiating factors.',
+            ethicsResponsibilityTitle: 'Responsibility & Ethics',
+            ethicsBias: '<b>Bias:</b> AI models can learn and amplify societal biases present in data.',
+            ethicsPrivacy: '<b>Privacy:</b> Protecting user data is a top priority when building AI applications.',
+            ethicsAccuracy: '<b>Accuracy:</b> Understanding that AI is a probabilistic tool and always requires "human in the loop".',
+            ethicsXAI: '<b>Explainable AI (XAI):</b> Efforts to make model decisions transparent and understandable.',
+            softSkillsTitle: 'Bilingual Skills',
+            softSkillsIntro: 'Success in the AI field requires the ability to connect two worlds:',
+            softSkillsAnalytics: '<b>Data Analysis (Numbers People):</b> Transforming deep insights from data into meaningful stories.',
+            softSkillsStorytelling: '<b>Storytelling (Story People):</b> Effectively communicating the value and impact of models to stakeholders.',
+            filterAll: 'All',
+            techProposed: 'Proposed Technologies',
+        }
+    };
+
+
+    // Data for dynamic content, now with both languages
+    const timelineData = [
+        {
             stage: 1,
-            title: "Giai Đoạn 1: Nền Tảng Vững Chắc",
-            duration: "1-2 Tháng",
-            content:
-              "Tập trung vào việc củng cố và áp dụng kiến thức Toán & Python vào bối cảnh AI. Thay vì học lại từ đầu, bạn sẽ học cách sử dụng chúng để xử lý dữ liệu lớn hiệu quả.",
-            focus: [
-              "Đại số tuyến tính & Giải tích ứng dụng",
-              "Xác suất & Thống kê cho mô hình",
-              "Python nâng cao (Generators, Multithreading)",
-              "Xử lý dữ liệu với NumPy & Pandas",
-              "Thành thạo Git & GitHub",
-            ],
-          },
-          {
+            title: { vi: 'Giai Đoạn 1: Nền Tảng Vững Chắc', en: 'Stage 1: Solid Foundation' },
+            duration: { vi: '1-2 Tháng', en: '1-2 Months' },
+            content: {
+                vi: 'Tập trung vào việc củng cố và áp dụng kiến thức Toán & Python vào bối cảnh AI. Thay vì học lại từ đầu, bạn sẽ học cách sử dụng chúng để xử lý dữ liệu lớn hiệu quả.',
+                en: 'Focus on consolidating and applying Math & Python knowledge in the AI context. Instead of starting from scratch, you will learn how to use them to efficiently process large datasets.'
+            },
+            focus: {
+                vi: ['Đại số tuyến tính & Giải tích ứng dụng', 'Xác suất & Thống kê cho mô hình', 'Python nâng cao (Generators, Multithreading)', 'Xử lý dữ liệu với NumPy & Pandas', 'Thành thạo Git & GitHub'],
+                en: ['Linear Algebra & Applied Calculus', 'Probability & Statistics for Models', 'Advanced Python (Generators, Multithreading)', 'Data Processing with NumPy & Pandas', 'Proficient in Git & GitHub']
+            }
+        },
+        {
             stage: 2,
-            title: "Giai Đoạn 2: Machine Learning Căn Bản",
-            duration: "3-4 Tháng",
-            content:
-              'Đi sâu vào các thuật toán Machine Learning cổ điển. Trọng tâm là xây dựng trực giác về việc "khi nào nên dùng thuật toán nào" và cách đánh giá hiệu suất mô hình một cách chính xác.',
-            focus: [
-              "Supervised Learning (Regression, SVM, Trees)",
-              "Unsupervised Learning (K-Means, PCA)",
-              "Ensemble Methods (Random Forests, XGBoost)",
-              "Thực hành với Scikit-learn",
-              "Xây dựng các dự án ML nhỏ",
-            ],
-          },
-          {
+            title: { vi: 'Giai Đoạn 2: Machine Learning Căn Bản', en: 'Stage 2: Basic Machine Learning' },
+            duration: { vi: '3-4 Tháng', en: '3-4 Months' },
+            content: {
+                vi: 'Đi sâu vào các thuật toán Machine Learning cổ điển. Trọng tâm là xây dựng trực giác về việc "khi nào nên dùng thuật toán nào" và cách đánh giá hiệu suất mô hình một cách chính xác.',
+                en: 'Delve into classic Machine Learning algorithms. The focus is on building intuition for "when to use which algorithm" and how to accurately evaluate model performance.'
+            },
+            focus: {
+                vi: ['Supervised Learning (Regression, SVM, Trees)', 'Unsupervised Learning (K-Means, PCA)', 'Ensemble Methods (Random Forests, XGBoost)', 'Thực hành với Scikit-learn', 'Xây dựng các dự án ML nhỏ'],
+                en: ['Supervised Learning (Regression, SVM, Trees)', 'Unsupervised Learning (K-Means, PCA)', 'Ensemble Methods (Random Forests, XGBoost)', 'Hands-on with Scikit-learn', 'Building small ML projects']
+            }
+        },
+        {
             stage: 3,
-            title: "Giai Đoạn 3: Chinh Phục Deep Learning",
-            duration: "2-3 Tháng",
-            content:
-              "Khám phá các kiến trúc mạng nơ-ron phức tạp, là động lực đằng sau các đột phá AI gần đây. Bắt đầu làm quen với các framework hàng đầu và các mô hình Generative AI.",
-            focus: [
-              "Neural Networks cơ bản",
-              "CNNs cho Computer Vision",
-              "RNNs/LSTMs cho dữ liệu tuần tự",
-              "Kiến trúc Transformers",
-              "Thành thạo TensorFlow & PyTorch",
-            ],
-          },
-          {
+            title: { vi: 'Giai Đoạn 3: Chinh Phục Deep Learning', en: 'Stage 3: Conquer Deep Learning' },
+            duration: { vi: '2-3 Tháng', en: '2-3 Months' },
+            content: {
+                vi: 'Khám phá các kiến trúc mạng nơ-ron phức tạp, là động lực đằng sau các đột phá AI gần đây. Bắt đầu làm quen với các framework hàng đầu và các mô hình Generative AI.',
+                en: 'Explore complex neural network architectures, the driving force behind recent AI breakthroughs. Begin familiarizing yourself with leading frameworks and Generative AI models.'
+            },
+            focus: {
+                vi: ['Neural Networks cơ bản', 'CNNs cho Computer Vision', 'RNNs/LSTMs cho dữ liệu tuần tự', 'Kiến trúc Transformers', 'Thành thạo TensorFlow & PyTorch'],
+                en: ['Basic Neural Networks', 'CNNs for Computer Vision', 'RNNs/LSTMs for sequential data', 'Transformer Architecture', 'Master TensorFlow & PyTorch']
+            }
+        },
+        {
             stage: 4,
-            title: "Giai Đoạn 4: MLOps & Chuyên Sâu",
-            duration: "2-3 Tháng",
-            content:
-              "Đây là giai đoạn then chốt giúp bạn khác biệt. Tận dụng kinh nghiệm Fullstack để học cách triển khai, vận hành và giám sát mô hình AI trong môi trường sản xuất.",
-            focus: [
-              "MLOps (CI/CD for AI)",
-              "Docker & Kubernetes",
-              "Nền tảng Cloud (AWS, GCP, Azure)",
-              "Generative AI nâng cao (RAG, Fine-tuning)",
-              "Xây dựng dự án End-to-End",
-            ],
-          },
-          {
+            title: { vi: 'Giai Đoạn 4: MLOps & Chuyên Sâu', en: 'Stage 4: MLOps & Specialization' },
+            duration: { vi: '2-3 Tháng', en: '2-3 Months' },
+            content: {
+                vi: 'Đây là giai đoạn then chốt giúp bạn khác biệt. Tận dụng kinh nghiệm Fullstack để học cách triển khai, vận hành và giám sát mô hình AI trong môi trường sản xuất.',
+                en: 'This is the crucial stage that differentiates you. Leverage your Fullstack experience to learn how to deploy, operate, and monitor AI models in production environments.'
+            },
+            focus: {
+                vi: ['MLOps (CI/CD for AI)', 'Docker & Kubernetes', 'Nền tảng Cloud (AWS, GCP, Azure)', 'Generative AI nâng cao (RAG, Fine-tuning)', 'Xây dựng dự án End-to-End'],
+                en: ['MLOps (CI/CD for AI)', 'Docker & Kubernetes', 'Cloud Platforms (AWS, GCP, Azure)', 'Advanced Generative AI (RAG, Fine-tuning)', 'Building End-to-End projects']
+            }
+        },
+        {
             stage: 5,
-            title: "Giai Đoạn 5: Học Tập Liên Tục",
-            duration: "Trọn đời",
-            content:
-              "AI là một lĩnh vực phát triển không ngừng. Việc liên tục cập nhật kiến thức, chuyên môn hóa vào một lĩnh vực ngách và đóng góp cho cộng đồng mã nguồn mở là chìa khóa cho sự thành công lâu dài.",
-            focus: [
-              "Chọn lĩnh vực chuyên môn hóa (NLP, CV...)",
-              "Đọc bài báo nghiên cứu",
-              "Tham gia các cuộc thi Kaggle",
-              "Đóng góp vào dự án mã nguồn mở",
-            ],
-          },
-        ];
+            title: { vi: 'Giai Đoạn 5: Học Tập Liên Tục', en: 'Stage 5: Continuous Learning' },
+            duration: { vi: 'Trọn đời', en: 'Lifelong' },
+            content: {
+                vi: 'AI là một lĩnh vực phát triển không ngừng. Việc liên tục cập nhật kiến thức, chuyên môn hóa vào một lĩnh vực ngách và đóng góp cho cộng đồng mã nguồn mở là chìa khóa cho sự thành công lâu dài.',
+                en: 'AI is a constantly evolving field. Continuously updating knowledge, specializing in a niche area, and contributing to open-source communities are key to long-term success.'
+            },
+            focus: {
+                vi: ['Chọn lĩnh vực chuyên môn hóa (NLP, CV...)', 'Đọc bài báo nghiên cứu', 'Tham gia các cuộc thi Kaggle', 'Đóng góp vào dự án mã nguồn mở'],
+                en: ['Choose a specialization (NLP, CV...)', 'Read research papers', 'Participate in Kaggle competitions', 'Contribute to open-source projects']
+            }
+        }
+    ];
 
-        const toolsData = [
-          {
-            name: "Python",
-            category: "Ngôn ngữ",
-            desc: "Ngôn ngữ chính cho AI/ML nhờ cú pháp đơn giản và hệ sinh thái thư viện mạnh mẽ.",
-          },
-          {
-            name: "NumPy",
-            category: "Xử lý dữ liệu",
-            desc: "Thư viện cốt lõi cho tính toán khoa học, cung cấp các đối tượng mảng đa chiều hiệu quả.",
-          },
-          {
-            name: "Pandas",
-            category: "Xử lý dữ liệu",
-            desc: "Công cụ mạnh mẽ để làm sạch, thao tác và phân tích dữ liệu có cấu trúc.",
-          },
-          {
-            name: "Scikit-learn",
-            category: "Machine Learning",
-            desc: "Cung cấp các thuật toán ML cổ điển (phân loại, hồi quy, gom cụm) với API dễ sử dụng.",
-          },
-          {
-            name: "TensorFlow",
-            category: "Deep Learning",
-            desc: "Framework mạnh mẽ của Google để xây dựng và triển khai các mô hình học sâu ở quy mô lớn.",
-          },
-          {
-            name: "PyTorch",
-            category: "Deep Learning",
-            desc: "Framework linh hoạt của Facebook, được ưa chuộng trong nghiên cứu nhờ tính toán động.",
-          },
-          {
-            name: "Keras",
-            category: "Deep Learning",
-            desc: "API cấp cao chạy trên TensorFlow, giúp xây dựng và thử nghiệm mạng nơ-ron nhanh chóng.",
-          },
-          {
-            name: "Hugging Face",
-            category: "NLP",
-            desc: "Nền tảng cung cấp các mô hình NLP được đào tạo trước (Transformers) và công cụ liên quan.",
-          },
-          {
-            name: "XGBoost",
-            category: "Machine Learning",
-            desc: "Thư viện tối ưu hóa cho thuật toán gradient boosting, cho hiệu suất cao trên dữ liệu có cấu trúc.",
-          },
-          {
-            name: "OpenCV",
-            category: "Computer Vision",
-            desc: "Thư viện hàng đầu cho các tác vụ thị giác máy tính, từ xử lý ảnh cơ bản đến nhận diện đối tượng.",
-          },
-          {
-            name: "MLflow",
-            category: "MLOps",
-            desc: "Nền tảng mã nguồn mở để quản lý toàn bộ vòng đời ML, từ thử nghiệm đến triển khai.",
-          },
-          {
-            name: "Docker",
-            category: "MLOps",
-            desc: "Công cụ để đóng gói ứng dụng và mô hình vào các container, đảm bảo tính nhất quán môi trường.",
-          },
-          {
-            name: "Kubernetes",
-            category: "MLOps",
-            desc: "Hệ thống điều phối container, giúp tự động hóa việc triển khai và quản lý ứng dụng AI ở quy mô lớn.",
-          },
-          {
-            name: "FastAPI",
-            category: "MLOps",
-            desc: "Framework Python hiệu suất cao để xây dựng API, lý tưởng để phục vụ (serve) các mô hình ML.",
-          },
-          {
-            name: "LangChain",
-            category: "Generative AI",
-            desc: "Framework để phát triển các ứng dụng được hỗ trợ bởi các mô hình ngôn ngữ lớn (LLMs).",
-          },
-          {
-            name: "Vector DBs",
-            category: "Generative AI",
-            desc: "Cơ sở dữ liệu chuyên dụng (Pinecone, Chroma) để lưu trữ và truy vấn embeddings cho các ứng dụng RAG.",
-          },
-        ];
+    const toolsData = [
+        { name: 'Python', category: { vi: 'Ngôn ngữ', en: 'Language' }, desc: { vi: 'Ngôn ngữ chính cho AI/ML nhờ cú pháp đơn giản và hệ sinh thái thư viện mạnh mẽ.', en: 'The primary language for AI/ML due to its simple syntax and powerful library ecosystem.' } },
+        { name: 'NumPy', category: { vi: 'Xử lý dữ liệu', en: 'Data Processing' }, desc: { vi: 'Thư viện cốt lõi cho tính toán khoa học, cung cấp các đối tượng mảng đa chiều hiệu quả.', en: 'Core library for scientific computing, providing efficient multi-dimensional array objects.' } },
+        { name: 'Pandas', category: { vi: 'Xử lý dữ liệu', en: 'Data Processing' }, desc: { vi: 'Công cụ mạnh mẽ để làm sạch, thao tác và phân tích dữ liệu có cấu trúc.', en: 'Powerful tool for cleaning, manipulating, and analyzing structured data.' } },
+        { name: 'Scikit-learn', category: { vi: 'Machine Learning', en: 'Machine Learning' }, desc: { vi: 'Cung cấp các thuật toán ML cổ điển (phân loại, hồi quy, gom cụm) với API dễ sử dụng.', en: 'Provides classic ML algorithms (classification, regression, clustering) with an easy-to-use API.' } },
+        { name: 'TensorFlow', category: { vi: 'Deep Learning', en: 'Deep Learning' }, desc: { vi: 'Framework mạnh mẽ của Google để xây dựng và triển khai các mô hình học sâu ở quy mô lớn.', en: 'Powerful framework from Google for building and deploying large-scale deep learning models.' } },
+        { name: 'PyTorch', category: { vi: 'Deep Learning', en: 'Deep Learning' }, desc: { vi: 'Framework linh hoạt của Facebook, được ưa chuộng trong nghiên cứu nhờ tính toán động.', en: 'Flexible framework from Facebook, popular in research due to its dynamic computation graph.' } },
+        { name: 'Keras', category: { vi: 'Deep Learning', en: 'Deep Learning' }, desc: { vi: 'API cấp cao chạy trên TensorFlow, giúp xây dựng và thử nghiệm mạng nơ-ron nhanh chóng.', en: 'High-level API running on TensorFlow, enabling rapid neural network prototyping and experimentation.' } },
+        { name: 'Hugging Face', category: { vi: 'NLP', en: 'NLP' }, desc: { vi: 'Nền tảng cung cấp các mô hình NLP được đào tạo trước (Transformers) và công cụ liên quan.', en: 'Platform offering pre-trained NLP models (Transformers) and related tools.' } },
+        { name: 'XGBoost', category: { vi: 'Machine Learning', en: 'Machine Learning' }, desc: { vi: 'Thư viện tối ưu hóa cho thuật toán gradient boosting, cho hiệu suất cao trên dữ liệu có cấu trúc.', en: 'Optimized library for gradient boosting algorithm, providing high performance on structured data.' } },
+        { name: 'OpenCV', category: { vi: 'Computer Vision', en: 'Computer Vision' }, desc: { vi: 'Thư viện hàng đầu cho các tác vụ thị giác máy tính, từ xử lý ảnh cơ bản đến nhận diện đối tượng.', en: 'Leading library for computer vision tasks, from basic image processing to object recognition.' } },
+        { name: 'MLflow', category: { vi: 'MLOps', en: 'MLOps' }, desc: { vi: 'Nền tảng mã nguồn mở để quản lý toàn bộ vòng đời ML, từ thử nghiệm đến triển khai.', en: 'Open-source platform for managing the entire ML lifecycle, from experimentation to deployment.' } },
+        { name: 'Docker', category: { vi: 'MLOps', en: 'MLOps' }, desc: { vi: 'Công cụ để đóng gói ứng dụng và mô hình vào các container, đảm bảo tính nhất quán môi trường.', en: 'Tool for packaging applications and models into containers, ensuring environment consistency.' } },
+        { name: 'Kubernetes', category: { vi: 'MLOps', en: 'MLOps' }, desc: { vi: 'Hệ thống điều phối container, giúp tự động hóa việc triển khai và quản lý ứng dụng AI ở quy mô lớn.', en: 'Container orchestration system, automating the deployment and management of AI applications at scale.' } },
+        { name: 'FastAPI', category: { vi: 'MLOps', en: 'MLOps' }, desc: { vi: 'Framework Python hiệu suất cao để xây dựng API, lý tưởng để phục vụ (serve) các mô hình ML.', en: 'High-performance Python framework for building APIs, ideal for serving ML models.' } },
+        { name: 'LangChain', category: { vi: 'Generative AI', en: 'Generative AI' }, desc: { vi: 'Framework để phát triển các ứng dụng được hỗ trợ bởi các mô hình ngôn ngữ lớn (LLMs).', en: 'Framework for developing applications powered by large language models (LLMs).' } },
+        { name: 'Vector DBs', category: { vi: 'Generative AI', en: 'Generative AI' }, desc: { vi: 'Cơ sở dữ liệu chuyên dụng (Pinecone, Chroma) để lưu trữ và truy vấn embeddings cho các ứng dụng RAG.', en: 'Specialized databases (Pinecone, Chroma) for storing and querying embeddings for RAG applications.' } },
+    ];
+    
+    const projectsData = [
+        {
+            title: { vi: 'Hệ thống tạo Video Marketing từ Văn bản', en: 'Text-to-Video Marketing System' },
+            category: 'Generative AI',
+            desc: {
+                vi: 'Xây dựng một ứng dụng web cho phép người dùng nhập mô tả sản phẩm và tự động tạo ra một video quảng cáo ngắn, bao gồm hình ảnh, giọng đọc và nhạc nền phù hợp. Thể hiện kỹ năng về Multimodal và Generative AI.',
+                en: 'Build a web application that allows users to input a product description and automatically generate a short promotional video, including suitable images, voiceover, and background music. Demonstrates skills in Multimodal and Generative AI.'
+            },
+            tech: ['Diffusion Models', 'TTS (Text-to-Speech)', 'Python', 'FastAPI']
+        },
+        {
+            title: { vi: 'AI Agent Tự động hóa Phân tích Báo cáo Tài chính', en: 'AI Agent for Automated Financial Report Analysis' },
+            category: 'Autonomous Agents',
+            desc: {
+                vi: 'Phát triển một agent tự động có thể đọc các file PDF báo cáo tài chính, trích xuất các chỉ số quan trọng (doanh thu, lợi nhuận), tạo tóm tắt và đưa ra các cảnh báo dựa trên các quy tắc được định sẵn. Yêu cầu kỹ năng NLP và MLOps.',
+                en: 'Develop an autonomous agent capable of reading financial report PDFs, extracting key metrics (revenue, profit), generating summaries, and issuing alerts based on predefined rules. Requires NLP and MLOps skills.'
+            },
+            tech: ['LLMs (GPT)', 'LangChain', 'RAG', 'Docker', 'MLOps pipeline']
+        },
+        {
+            title: { vi: 'Công cụ Fine-tuning Ảnh chân dung cá nhân hóa', en: 'Personalized Portrait Fine-tuning Tool' },
+            category: 'Generative AI',
+            desc: {
+                vi: 'Tạo một giao diện cho phép người dùng tải lên một vài ảnh của chính họ và fine-tune một mô hình Stable Diffusion để tạo ra các ảnh chân dung theo nhiều phong cách nghệ thuật khác nhau. Thể hiện kỹ năng về fine-tuning và Computer Vision.',
+                en: 'Create an interface allowing users to upload a few of their own photos and fine-tune a Stable Diffusion model to generate portraits in various artistic styles. Demonstrates fine-tuning and Computer Vision skills.'
+            },
+            tech: ['DreamBooth', 'Stable Diffusion', 'PyTorch', 'Gradio/Streamlit']
+        },
+        {
+            title: { vi: 'Trợ lý Tìm kiếm Thông tin Y khoa Đa phương tiện', en: 'Multimodal Medical Information Retrieval Assistant' },
+            category: 'Multimodal AI',
+            desc: {
+                vi: 'Xây dựng một hệ thống RAG cho phép bác sĩ đặt câu hỏi bằng ngôn ngữ tự nhiên và nhận câu trả lời được tổng hợp từ nhiều nguồn: bài báo khoa học (văn bản), hình ảnh y khoa (X-quang, MRI) và video phẫu thuật. Đây là một dự án phức tạp, thể hiện trình độ chuyên môn cao.',
+                en: 'Build a RAG system allowing doctors to ask natural language questions and receive answers synthesized from multiple sources: scientific papers (text), medical images (X-rays, MRIs), and surgical videos. This is a complex project, demonstrating high-level expertise.'
+            },
+            tech: ['Multimodal LLMs', 'RAG', 'Vector Databases', 'OpenCV', 'PyTorch']
+        },
+        {
+            title: { vi: 'Hệ thống giám sát Model Drift và Retraining tự động', en: 'Automated Model Drift Monitoring and Retraining System' },
+            category: 'MLOps',
+            desc: {
+                vi: 'Phát triển một giải pháp MLOps end-to-end. Triển khai một mô hình (ví dụ: dự đoán churn), giám sát dữ liệu đầu vào và đầu ra của nó trong môi trường sản xuất. Tự động phát hiện khi hiệu suất mô hình suy giảm (model drift) và kích hoạt pipeline huấn luyện lại với dữ liệu mới.',
+                en: 'Develop an end-to-end MLOps solution. Deploy a model (e.g., churn prediction), monitor its input and output data in a production environment. Automatically detect when model performance degrades (model drift) and trigger a retraining pipeline with new data.'
+            },
+            tech: ['MLflow', 'Prometheus', 'Kubernetes', 'CI/CD (GitHub Actions)', 'Cloud Platform (AWS/GCP)']
+        },
+        {
+            title: { vi: 'Hệ thống đề xuất sản phẩm thời gian thực', en: 'Real-time Product Recommendation System' },
+            category: 'MLOps',
+            desc: {
+                vi: 'Xây dựng hệ thống đề xuất cho trang thương mại điện tử, cập nhật gợi ý cho người dùng ngay lập tức dựa trên hành vi click và xem sản phẩm của họ. Dự án này nhấn mạnh vào kỹ năng xử lý dữ liệu luồng và triển khai hệ thống có độ trễ thấp.',
+                en: 'Build a recommendation system for e-commerce, updating user suggestions instantly based on their click and product viewing behavior. This project emphasizes stream data processing and low-latency system deployment skills.'
+            },
+            tech: ['Collaborative Filtering', 'Kafka/Redis', 'FastAPI', 'Docker']
+        }
+    ];
 
-        const projectsData = [
-          {
-            title: "Hệ thống tạo Video Marketing từ Văn bản",
-            category: "Generative AI",
-            desc: "Xây dựng một ứng dụng web cho phép người dùng nhập mô tả sản phẩm và tự động tạo ra một video quảng cáo ngắn, bao gồm hình ảnh, giọng đọc và nhạc nền phù hợp. Thể hiện kỹ năng về Multimodal và Generative AI.",
-            tech: [
-              "Diffusion Models",
-              "TTS (Text-to-Speech)",
-              "Python",
-              "FastAPI",
-            ],
-          },
-          {
-            title: "AI Agent Tự động hóa Phân tích Báo cáo Tài chính",
-            category: "Autonomous Agents",
-            desc: "Phát triển một agent tự động có thể đọc các file PDF báo cáo tài chính, trích xuất các chỉ số quan trọng (doanh thu, lợi nhuận), tạo tóm tắt và đưa ra các cảnh báo dựa trên các quy tắc được định sẵn. Yêu cầu kỹ năng NLP và MLOps.",
-            tech: [
-              "LLMs (GPT)",
-              "LangChain",
-              "RAG",
-              "Docker",
-              "MLOps pipeline",
-            ],
-          },
-          {
-            title: "Công cụ Fine-tuning Ảnh chân dung cá nhân hóa",
-            category: "Generative AI",
-            desc: "Tạo một giao diện cho phép người dùng tải lên một vài ảnh của chính họ và fine-tune một mô hình Stable Diffusion để tạo ra các ảnh chân dung theo nhiều phong cách nghệ thuật khác nhau. Thể hiện kỹ năng về fine-tuning và Computer Vision.",
-            tech: [
-              "DreamBooth",
-              "Stable Diffusion",
-              "PyTorch",
-              "Gradio/Streamlit",
-            ],
-          },
-          {
-            title: "Trợ lý Tìm kiếm Thông tin Y khoa Đa phương tiện",
-            category: "Multimodal AI",
-            desc: "Xây dựng một hệ thống RAG cho phép bác sĩ đặt câu hỏi bằng ngôn ngữ tự nhiên và nhận câu trả lời được tổng hợp từ nhiều nguồn: bài báo khoa học (văn bản), hình ảnh y khoa (X-quang, MRI) và video phẫu thuật. Đây là một dự án phức tạp, thể hiện trình độ chuyên môn cao.",
-            tech: [
-              "Multimodal LLMs",
-              "RAG",
-              "Vector Databases",
-              "OpenCV",
-              "PyTorch",
-            ],
-          },
-          {
-            title: "Hệ thống giám sát Model Drift và Retraining tự động",
-            category: "MLOps",
-            desc: "Phát triển một giải pháp MLOps end-to-end. Triển khai một mô hình (ví dụ: dự đoán churn), giám sát dữ liệu đầu vào và đầu ra của nó trong môi trường sản xuất. Tự động phát hiện khi hiệu suất mô hình suy giảm (model drift) và kích hoạt pipeline huấn luyện lại với dữ liệu mới.",
-            tech: [
-              "MLflow",
-              "Prometheus",
-              "Kubernetes",
-              "CI/CD (GitHub Actions)",
-              "Cloud Platform (AWS/GCP)",
-            ],
-          },
-          {
-            title: "Hệ thống đề xuất sản phẩm thời gian thực",
-            category: "MLOps",
-            desc: "Xây dựng hệ thống đề xuất cho trang thương mại điện tử, cập nhật gợi ý cho người dùng ngay lập tức dựa trên hành vi click và xem sản phẩm của họ. Dự án này nhấn mạnh vào kỹ năng xử lý dữ liệu luồng và triển khai hệ thống có độ trễ thấp.",
-            tech: [
-              "Collaborative Filtering",
-              "Kafka/Redis",
-              "FastAPI",
-              "Docker",
-            ],
-          },
-        ];
-
-        // Scrollspy and Navigation
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                navigationLinks.forEach((link) => {
-                  link.classList.toggle(
-                    "active",
-                    link.getAttribute("href").substring(1) === entry.target.id,
-                  );
-                });
-              }
-            });
-          },
-          { rootMargin: "-30% 0px -70% 0px" },
-        );
-
-        sections.forEach((section) => {
-          observer.observe(section);
+    // Function to apply translations
+    function applyTranslations() {
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                element.textContent = translations[currentLanguage][key];
+            }
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+            const key = element.getAttribute('data-i18n-placeholder');
+            if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                element.placeholder = translations[currentLanguage][key];
+            }
         });
 
-        // Initial active link
-        if (window.location.hash) {
-          document
-            .querySelector(`a[href="${window.location.hash}"]`)
-            ?.classList.add("active");
-        } else {
-          document
-            .querySelector('a[href="#overview"]')
-            ?.classList.add("active");
+        // Update chart labels
+        if (roadmapChartInstance) {
+            roadmapChartInstance.data.labels = [
+                translations[currentLanguage].roadmapLabelsStage1 || 'GĐ 1: Nền Tảng',
+                translations[currentLanguage].roadmapLabelsStage2 || 'GĐ 2: Machine Learning',
+                translations[currentLanguage].roadmapLabelsStage3 || 'GĐ 3: Deep Learning',
+                translations[currentLanguage].roadmapLabelsStage4 || 'GĐ 4: MLOps & Chuyên sâu'
+            ];
+            roadmapChartInstance.update();
         }
 
-        navigationLinks.forEach((link) => {
-          link.addEventListener("click", (e) => {
-            navigationLinks.forEach((l) => l.classList.remove("active"));
-            e.currentTarget.classList.add("active");
-          });
+        renderTimeline();
+        renderTools(toolSearch.value.toLowerCase());
+        renderProjectFilters(); // Re-render filters to update "All" text
+        renderProjects(document.querySelector('.filter-btn.active')?.dataset.filter || 'all'); // Re-render projects with current filter
+    }
+
+    // Language switch functionality
+    langButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            langButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            currentLanguage = button.dataset.lang;
+            applyTranslations();
         });
+    });
 
-        // Roadmap Timeline
-        function renderTimeline() {
-          timelineData.forEach((item, index) => {
-            const timelineItem = document.createElement("div");
-            timelineItem.className = "timeline-item";
-            if (index === 0) timelineItem.classList.add("active");
+    // Scrollspy and Navigation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navigationLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                });
+            }
+        });
+    }, { rootMargin: "-30% 0px -70% 0px" });
 
-            const title = document.createElement("h4");
-            title.className = "font-bold text-lg text-slate-800 mb-1";
-            title.innerHTML = `${item.title} <span class="text-sm font-medium text-indigo-600 bg-indigo-100 px-2 py-1 rounded-full ml-2">${item.duration}</span>`;
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+    
+    // Initial active link
+    if(window.location.hash) {
+       document.querySelector(`a[href="${window.location.hash}"]`)?.classList.add('active');
+    } else {
+        document.querySelector('a[href="#overview"]')?.classList.add('active');
+    }
+    
+    navigationLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            navigationLinks.forEach(l => l.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+        });
+    });
 
-            const contentDiv = document.createElement("div");
-            contentDiv.className = "timeline-content pl-2";
 
-            const desc = document.createElement("p");
-            desc.className = "text-slate-600 mb-3";
-            desc.textContent = item.content;
+    // Roadmap Timeline
+    function renderTimeline() {
+        timelineContainer.innerHTML = ''; // Clear existing timeline
+        timelineData.forEach((item, index) => {
+            const timelineItem = document.createElement('div');
+            timelineItem.className = 'timeline-item';
+            if (index === 0) timelineItem.classList.add('active'); // Keep first item active by default
 
-            const focusList = document.createElement("ul");
-            focusList.className = "space-y-1 list-inside";
-            item.focus.forEach((focusPoint) => {
-              const li = document.createElement("li");
-              li.className = "text-sm text-slate-700 flex items-start";
-              li.innerHTML = `<span class="text-green-500 mr-2 mt-1">✓</span> ${focusPoint}`;
-              focusList.appendChild(li);
+            const title = document.createElement('h4');
+            title.className = 'font-bold text-lg text-slate-800 mb-1';
+            title.innerHTML = `${item.title[currentLanguage]} <span class="text-sm font-medium text-indigo-600 bg-indigo-100 px-2 py-1 rounded-full ml-2">${item.duration[currentLanguage]}</span>`;
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'timeline-content pl-2';
+            
+            const desc = document.createElement('p');
+            desc.className = 'text-slate-600 mb-3';
+            desc.textContent = item.content[currentLanguage];
+            
+            const focusList = document.createElement('ul');
+            focusList.className = 'space-y-1 list-inside';
+            item.focus[currentLanguage].forEach(focusPoint => {
+                const li = document.createElement('li');
+                li.className = 'text-sm text-slate-700 flex items-start';
+                li.innerHTML = `<span class="text-green-500 mr-2 mt-1">✓</span> ${focusPoint}`;
+                focusList.appendChild(li);
             });
 
             contentDiv.appendChild(desc);
             contentDiv.appendChild(focusList);
             timelineItem.appendChild(title);
             timelineItem.appendChild(contentDiv);
-
-            timelineItem.addEventListener("click", () => {
-              document
-                .querySelectorAll(".timeline-item")
-                .forEach((el) => el.classList.remove("active"));
-              timelineItem.classList.add("active");
+            
+            timelineItem.addEventListener('click', () => {
+                document.querySelectorAll('.timeline-item').forEach(el => el.classList.remove('active'));
+                timelineItem.classList.add('active');
             });
 
             timelineContainer.appendChild(timelineItem);
-          });
-        }
+        });
+    }
 
-        // Roadmap Chart
-        function renderRoadmapChart() {
-          const ctx = document.getElementById("roadmapChart").getContext("2d");
-          const roadmapChart = new Chart(ctx, {
-            type: "doughnut",
+    // Roadmap Chart
+    function renderRoadmapChart() {
+        if (roadmapChartInstance) {
+            roadmapChartInstance.destroy(); // Destroy existing chart instance if any
+        }
+        const ctx = roadmapChartCanvas.getContext('2d');
+        roadmapChartInstance = new Chart(ctx, {
+            type: 'doughnut',
             data: {
-              labels: [
-                "GĐ 1: Nền Tảng",
-                "GĐ 2: Machine Learning",
-                "GĐ 3: Deep Learning",
-                "GĐ 4: MLOps & Chuyên sâu",
-              ],
-              datasets: [
-                {
-                  label: "Phân Bổ Thời Gian",
-                  data: [15, 35, 25, 25], // Based on average time: 1.5, 3.5, 2.5, 2.5 months
-                  backgroundColor: [
-                    "#6366f1", // Indigo
-                    "#3b82f6", // Blue
-                    "#14b8a6", // Teal
-                    "#f97316", // Orange
-                  ],
-                  borderColor: "#f8fafc",
-                  borderWidth: 4,
-                  hoverOffset: 12,
-                },
-              ],
+                labels: [
+                    translations[currentLanguage].roadmapLabelsStage1 || 'GĐ 1: Nền Tảng',
+                    translations[currentLanguage].roadmapLabelsStage2 || 'GĐ 2: Machine Learning',
+                    translations[currentLanguage].roadmapLabelsStage3 || 'GĐ 3: Deep Learning',
+                    translations[currentLanguage].roadmapLabelsStage4 || 'GĐ 4: MLOps & Chuyên sâu'
+                ],
+                datasets: [{
+                    label: 'Phân Bổ Thời Gian', // This label isn't shown on doughnut, but good to have
+                    data: [15, 35, 25, 25], // Based on average time: 1.5, 3.5, 2.5, 2.5 months
+                    backgroundColor: [
+                        '#6366f1', // Indigo
+                        '#3b82f6', // Blue
+                        '#14b8a6', // Teal
+                        '#f97316'  // Orange
+                    ],
+                    borderColor: '#f8fafc',
+                    borderWidth: 4,
+                    hoverOffset: 12
+                }]
             },
             options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  position: "bottom",
-                  labels: {
-                    padding: 15,
-                    boxWidth: 12,
-                    font: {
-                      size: 12,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            boxWidth: 12,
+                            font: {
+                                size: 12
+                            },
+                            generateLabels: function(chart) {
+                                const data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    const dataset = data.datasets[0];
+                                    return data.labels.map(function(label, i) {
+                                        const metaElement = chart.getDatasetMeta(0).data[i];
+                                        const hidden = metaElement ? metaElement.hidden : false;
+                                        
+                                        return {
+                                            text: label,
+                                            fillStyle: dataset.backgroundColor[i],
+                                            strokeStyle: dataset.borderColor,
+                                            lineWidth: dataset.borderWidth,
+                                            hidden: hidden,
+                                            index: i
+                                        };
+                                    });
+                                }
+                                return [];
+                            }
+                        }
                     },
-                  },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.label}: ${context.raw}%`;
+                            }
+                        }
+                    }
                 },
-                tooltip: {
-                  callbacks: {
-                    label: function (context) {
-                      return `${context.label}: ${context.raw}%`;
-                    },
-                  },
-                },
-              },
-              cutout: "60%",
-            },
-          });
+                cutout: '60%'
+            }
+        });
+    }
+
+    // Tools Grid and Search
+    function renderTools(filter = '') {
+        toolsGrid.innerHTML = '';
+        const lowerCaseFilter = filter.toLowerCase();
+        const filteredTools = toolsData.filter(tool => 
+            tool.name.toLowerCase().includes(lowerCaseFilter) ||
+            tool.category[currentLanguage].toLowerCase().includes(lowerCaseFilter) ||
+            tool.desc[currentLanguage].toLowerCase().includes(lowerCaseFilter)
+        );
+
+        if (filteredTools.length === 0) {
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
         }
 
-        // Tools Grid and Search
-        function renderTools(filter = "") {
-          toolsGrid.innerHTML = "";
-          const filteredTools = toolsData.filter(
-            (tool) =>
-              tool.name.toLowerCase().includes(filter) ||
-              tool.category.toLowerCase().includes(filter) ||
-              tool.desc.toLowerCase().includes(filter),
-          );
-
-          if (filteredTools.length === 0) {
-            noResults.style.display = "block";
-          } else {
-            noResults.style.display = "none";
-          }
-
-          filteredTools.forEach((tool) => {
-            const card = document.createElement("div");
-            card.className =
-              "bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:shadow-md hover:-translate-y-1 transition-all duration-200";
+        filteredTools.forEach(tool => {
+            const card = document.createElement('div');
+            card.className = 'bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:shadow-md hover:-translate-y-1 transition-all duration-200';
             card.innerHTML = `
                 <h4 class="font-bold text-slate-900">${tool.name}</h4>
-                <p class="text-xs font-semibold text-indigo-600 bg-indigo-100 inline-block px-2 py-0.5 rounded-full mb-2">${tool.category}</p>
-                <p class="text-sm text-slate-600">${tool.desc}</p>
+                <p class="text-xs font-semibold text-indigo-600 bg-indigo-100 inline-block px-2 py-0.5 rounded-full mb-2">${tool.category[currentLanguage]}</p>
+                <p class="text-sm text-slate-600">${tool.desc[currentLanguage]}</p>
             `;
             toolsGrid.appendChild(card);
-          });
-        }
-
-        toolSearch.addEventListener("input", (e) => {
-          renderTools(e.target.value.toLowerCase());
         });
+    }
 
-        // Projects Grid and Filters
-        function renderProjects(filter = "all") {
-          projectsContainer.innerHTML = "";
-          const filteredProjects = projectsData.filter(
-            (p) => filter === "all" || p.category === filter,
-          );
+    toolSearch.addEventListener('input', (e) => {
+        renderTools(e.target.value.toLowerCase());
+    });
+    
+    // Projects Grid and Filters
+    function renderProjects(filter = 'all') {
+        projectsContainer.innerHTML = '';
+        const filteredProjects = projectsData.filter(p => filter === 'all' || p.category === filter);
 
-          filteredProjects.forEach((project) => {
-            const card = document.createElement("div");
-            card.className =
-              "bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col";
-            let categoryColor = "bg-blue-100 text-blue-800";
-            if (project.category === "Generative AI")
-              categoryColor = "bg-purple-100 text-purple-800";
-            if (project.category === "Autonomous Agents")
-              categoryColor = "bg-green-100 text-green-800";
-            if (project.category === "Multimodal AI")
-              categoryColor = "bg-yellow-100 text-yellow-800";
-            if (project.category === "MLOps")
-              categoryColor = "bg-orange-100 text-orange-800";
+        filteredProjects.forEach(project => {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col';
+            let categoryColor = 'bg-blue-100 text-blue-800';
+            if (project.category === 'Generative AI') categoryColor = 'bg-purple-100 text-purple-800';
+            if (project.category === 'Autonomous Agents') categoryColor = 'bg-green-100 text-green-800';
+            if (project.category === 'Multimodal AI') categoryColor = 'bg-yellow-100 text-yellow-800';
+            if (project.category === 'MLOps') categoryColor = 'bg-orange-100 text-orange-800';
 
             card.innerHTML = `
                 <div class="p-6 flex-grow">
                     <p class="text-xs font-bold uppercase tracking-wider ${categoryColor} inline-block px-2 py-1 rounded mb-2">${project.category}</p>
-                    <h4 class="font-bold text-lg text-slate-900 mb-2">${project.title}</h4>
-                    <p class="text-sm text-slate-600">${project.desc}</p>
+                    <h4 class="font-bold text-lg text-slate-900 mb-2">${project.title[currentLanguage]}</h4>
+                    <p class="text-sm text-slate-600">${project.desc[currentLanguage]}</p>
                 </div>
                 <div class="bg-slate-50 p-4 border-t">
-                    <p class="text-xs text-slate-500 font-medium">Công nghệ đề xuất: <span class="text-slate-700">${project.tech.join(", ")}</span></p>
+                    <p class="text-xs text-slate-500 font-medium" data-i18n="techProposed">${translations[currentLanguage].techProposed}: <span class="text-slate-700">${project.tech.join(', ')}</span></p>
                 </div>
             `;
             projectsContainer.appendChild(card);
-          });
-        }
+        });
+    }
 
-        function renderProjectFilters() {
-          const categories = [
-            "all",
-            ...new Set(projectsData.map((p) => p.category)),
-          ];
-          projectFiltersContainer.innerHTML = "";
-          categories.forEach((cat, index) => {
-            const button = document.createElement("button");
-            button.className =
-              "filter-btn px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200";
-            button.textContent = cat === "all" ? "Tất cả" : cat;
+    function renderProjectFilters() {
+        // Collect categories, handling the case where category is an object {vi: '...', en: '...'}
+        // For project filtering, we're still using a single category string for now.
+        const categories = ['all', ...new Set(projectsData.map(p => p.category))];
+        projectFiltersContainer.innerHTML = '';
+        categories.forEach((cat, index) => {
+            const button = document.createElement('button');
+            button.className = 'filter-btn px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200';
+            button.textContent = cat === 'all' ? translations[currentLanguage].filterAll : cat;
             button.dataset.filter = cat;
-
-            if (index === 0) {
-              button.classList.add("bg-indigo-600", "text-white");
+            
+            // Set initial active state based on the current filter
+            const currentActiveFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+            if (cat === currentActiveFilter) {
+                 button.classList.add('bg-indigo-600', 'text-white');
             } else {
-              button.classList.add(
-                "bg-white",
-                "text-slate-700",
-                "border",
-                "border-slate-300",
-                "hover:bg-slate-100",
-              );
+                 button.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-300', 'hover:bg-slate-100');
             }
 
-            button.addEventListener("click", () => {
-              document.querySelectorAll(".filter-btn").forEach((btn) => {
-                btn.classList.remove("bg-indigo-600", "text-white");
-                btn.classList.add(
-                  "bg-white",
-                  "text-slate-700",
-                  "border",
-                  "border-slate-300",
-                  "hover:bg-slate-100",
-                );
-              });
-              button.classList.add("bg-indigo-600", "text-white");
-              button.classList.remove(
-                "bg-white",
-                "text-slate-700",
-                "border",
-                "border-slate-300",
-                "hover:bg-slate-100",
-              );
-              renderProjects(cat);
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('bg-indigo-600', 'text-white');
+                    btn.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-300', 'hover:bg-slate-100');
+                });
+                button.classList.add('bg-indigo-600', 'text-white');
+                button.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-300', 'hover:bg-slate-100');
+                renderProjects(cat);
             });
             projectFiltersContainer.appendChild(button);
-          });
-        }
+        });
+    }
 
-        // Initial renders
-        renderTimeline();
-        renderRoadmapChart();
-        renderTools();
-        renderProjectFilters();
-        renderProjects();
-      });
-    </script>
-  </body>
+    // Add labels for roadmap chart to translations
+    translations.vi.roadmapLabelsStage1 = 'GĐ 1: Nền Tảng';
+    translations.vi.roadmapLabelsStage2 = 'GĐ 2: Machine Learning';
+    translations.vi.roadmapLabelsStage3 = 'GĐ 3: Deep Learning';
+    translations.vi.roadmapLabelsStage4 = 'GĐ 4: MLOps & Chuyên sâu';
+
+    translations.en.roadmapLabelsStage1 = 'Stage 1: Foundation';
+    translations.en.roadmapLabelsStage2 = 'Stage 2: Machine Learning';
+    translations.en.roadmapLabelsStage3 = 'Stage 3: Deep Learning';
+    translations.en.roadmapLabelsStage4 = 'Stage 4: MLOps & Specialization';
+
+
+    // Initial renders
+    applyTranslations(); // Apply initial language
+    renderRoadmapChart(); // Initial chart render
+});
+</script>
+
+</body>
 </html>
